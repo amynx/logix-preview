@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+/* ── Tokens del rediseño (design_handoff) ──────────────────────────────────
+   Variables CSS para usarlas desde Tailwind (bg-[var(--lx-surface)]) sin
+   repetir valores. Colores en oklch sobre tres tonos: violeta 300 (marca y
+   operaciones), ámbar 70 (condiciones), verde 158 (completado y resultados).
+   El modo oscuro remapea los mismos tokens más abajo. */
+:root {
+  --lx-violet: oklch(0.50 0.15 300);
+  --lx-violet-hover: oklch(0.44 0.16 300);
+  --lx-amber: oklch(0.55 0.12 70);
+  --lx-green: oklch(0.66 0.13 160);
+
+  --lx-bg: oklch(0.975 0.004 265);
+  --lx-surface: oklch(1 0 0);
+  --lx-surface-muted: oklch(0.988 0.004 280);
+  --lx-surface-sunken: oklch(0.978 0.006 285);
+
+  --lx-border: oklch(0.92 0.008 280);
+  --lx-border-soft: oklch(0.945 0.006 280);
+  --lx-border-dashed: oklch(0.86 0.012 285);
+
+  --lx-ink: oklch(0.24 0.02 275);
+  --lx-ink-body: oklch(0.34 0.02 278);
+  --lx-ink-muted: oklch(0.50 0.015 275);
+  --lx-ink-ghost: oklch(0.68 0.012 275);
+
+  --lx-entrada-bg: oklch(0.968 0.02 292);
+  --lx-entrada-border: oklch(0.90 0.04 292);
+  --lx-entrada-fg: oklch(0.40 0.11 292);
+
+  --lx-resultante-bg: oklch(0.965 0.035 158);
+  --lx-resultante-border: oklch(0.89 0.06 158);
+  --lx-resultante-fg: oklch(0.40 0.10 158);
+
+  --lx-condicion-bg: oklch(0.968 0.035 80);
+  --lx-condicion-border: oklch(0.91 0.05 78);
+  --lx-condicion-fg: oklch(0.45 0.10 68);
+
+  /* Caso negativo de una decisión (la respuesta «No»): rojo 25. */
+  --lx-negativo: oklch(0.60 0.20 25);
+  --lx-negativo-bg: oklch(0.965 0.02 25);
+  --lx-negativo-border: oklch(0.85 0.06 25);
+  --lx-negativo-fg: oklch(0.52 0.16 25);
+
+  --lx-r-chip: 8px;
+  --lx-r-control: 9px;
+  --lx-r-field: 11px;
+  --lx-r-panel: 14px;
+  --lx-r-card: 18px;
+
+  --lx-shadow-card: 0 1px 2px oklch(0.30 0.02 275 / 0.04), 0 12px 28px -22px oklch(0.30 0.02 275 / 0.35);
+  --lx-shadow-pop: 0 1px 2px oklch(0.30 0.02 275 / 0.05), 0 16px 32px -24px oklch(0.30 0.02 275 / 0.60);
+
+  --lx-font-display: "Outfit", system-ui, sans-serif;
+  --lx-font-ui: "Instrument Sans", system-ui, sans-serif;
+  --lx-font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Modo oscuro: los mismos tokens, remapeados (el prototipo solo trae claro). */
+html.dark {
+  --lx-violet: oklch(0.64 0.15 300);
+  --lx-violet-hover: oklch(0.70 0.15 300);
+  --lx-amber: oklch(0.72 0.11 70);
+  --lx-green: oklch(0.72 0.13 160);
+
+  --lx-bg: oklch(0.19 0.01 275);
+  --lx-surface: oklch(0.24 0.014 275);
+  --lx-surface-muted: oklch(0.225 0.012 278);
+  --lx-surface-sunken: oklch(0.215 0.012 282);
+
+  --lx-border: oklch(0.34 0.014 280);
+  --lx-border-soft: oklch(0.30 0.012 280);
+  --lx-border-dashed: oklch(0.40 0.016 285);
+
+  --lx-ink: oklch(0.96 0.008 275);
+  --lx-ink-body: oklch(0.88 0.010 278);
+  --lx-ink-muted: oklch(0.70 0.012 275);
+  --lx-ink-ghost: oklch(0.55 0.012 275);
+
+  --lx-entrada-bg: oklch(0.30 0.05 292);
+  --lx-entrada-border: oklch(0.42 0.07 292);
+  --lx-entrada-fg: oklch(0.85 0.09 292);
+
+  --lx-resultante-bg: oklch(0.28 0.05 158);
+  --lx-resultante-border: oklch(0.40 0.07 158);
+  --lx-resultante-fg: oklch(0.85 0.10 158);
+
+  --lx-condicion-bg: oklch(0.30 0.05 78);
+  --lx-condicion-border: oklch(0.42 0.06 78);
+  --lx-condicion-fg: oklch(0.86 0.10 78);
+
+  --lx-negativo: oklch(0.62 0.20 25);
+  --lx-negativo-bg: oklch(0.30 0.06 25);
+  --lx-negativo-border: oklch(0.44 0.09 25);
+  --lx-negativo-fg: oklch(0.85 0.12 25);
+}
+
+/* La interfaz usa Instrument Sans; títulos y numeración pasan a Outfit por token. */
+body {
+  font-family: var(--lx-font-ui);
+}
+
+/* Área de impresión: oculta en pantalla; en la impresión (Guardar como PDF) se
+   muestra solo ella cuando el body tiene la clase "printing". */
+#print-area {
+  display: none;
+}
+
+@media print {
+  body.printing > *:not(#print-area) {
+    display: none !important;
+  }
+  body.printing #print-area {
+    display: block !important;
+  }
+}
+
+/* Micro-interacciones: transiciones suaves y aparición de diálogos. Respeta la
+   preferencia de movimiento reducido del sistema. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  }
+  @keyframes dialog-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .dialog-enter {
+    animation: dialog-in 0.18s ease-out;
+  }
+}
+
+/* --- Modo oscuro ---
+   En vez de añadir variantes dark: en cada componente, se remapea el puñado de
+   utilidades neutras (fondos, bordes y texto) bajo .dark. Los acentos (índigo,
+   verde, ámbar, blanco sobre botón) se conservan. */
+html.dark {
+  color-scheme: dark;
+}
+
+.dark .bg-white { background-color: #1e293b; } /* slate-800: tarjetas, inputs, paneles */
+.dark .bg-white\/90 { background-color: rgba(15, 23, 42, 0.9); } /* cabecera */
+.dark .bg-slate-50 { background-color: #0f172a; } /* slate-900: fondo base */
+.dark .bg-slate-50\/60,
+.dark .bg-slate-50\/50 { background-color: rgba(15, 23, 42, 0.5); }
+.dark .bg-slate-100 { background-color: #334155; } /* slate-700: fichas, hover */
+.dark .bg-indigo-50,
+.dark .bg-indigo-50\/50 { background-color: rgba(99, 102, 241, 0.15); }
+.dark .bg-blue-50\/60 { background-color: rgba(59, 130, 246, 0.12); }
+.dark .bg-emerald-50\/60 { background-color: rgba(16, 185, 129, 0.12); }
+
+.dark .border-slate-100,
+.dark .border-slate-200 { border-color: #334155; }
+.dark .border-slate-300 { border-color: #475569; }
+
+.dark .text-slate-900 { color: #f1f5f9; }
+.dark .text-slate-800 { color: #e2e8f0; }
+.dark .text-slate-700 { color: #cbd5e1; }
+.dark .text-slate-600 { color: #94a3b8; }
+.dark .text-slate-500 { color: #94a3b8; }
+.dark .text-slate-400 { color: #64748b; }
+.dark .text-slate-300 { color: #475569; }
+
+/* Estados hover neutros (evita destellos claros en oscuro). */
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-100:hover { background-color: #334155; }
+.dark .hover\:bg-indigo-50:hover { background-color: rgba(99, 102, 241, 0.15); }
+.dark .hover\:bg-red-50:hover { background-color: rgba(239, 68, 68, 0.15); }
+
+.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.12); }
+.dark .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.12); }
+.dark .text-amber-800 { color: #fcd34d; }
+.dark .text-emerald-700 { color: #6ee7b7; }
+
+.dark input::placeholder,
+.dark textarea::placeholder { color: #64748b; }
+
+.dark .section-step { color: #94a3b8; }
+.dark .section-step:hover { background-color: #334155; color: #e2e8f0; }
+
+/* Navegación por pasos (barra bajo la cabecera). */
+.section-step {
+  flex-shrink: 0;
+  white-space: nowrap;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  color: #64748b; /* slate-500 */
+}
+.section-step:hover {
+  background-color: #f1f5f9; /* slate-100 */
+  color: #334155; /* slate-700 */
+}
+.section-step.is-active {
+  background-color: #4f46e5; /* indigo-600 */
+  color: #ffffff;
+}
+
+/* Compensa la cabecera fija al saltar a una sección. */
+#students-container,
+#analysis-info,
+#inputs-container,
+#table-container,
+#chain-container {
+  scroll-margin-top: 7rem;
+}
+
+/* Resalta la sección enfocada durante la guía de inicio. */
+.guide-highlight {
+  border-radius: 0.75rem;
+  box-shadow: 0 0 0 3px #6366f1, 0 0 0 9px rgba(99, 102, 241, 0.18);
+  transition: box-shadow 0.2s ease;
+}
+
+/* En una fila de la tabla el anillo externo se recorta; se usa fondo + borde interior. */
+tr.guide-highlight {
+  border-radius: 0;
+  background-color: rgba(99, 102, 241, 0.1) !important;
+  box-shadow: inset 0 0 0 2px #6366f1;
+}
+
+/* Retroalimentación al arrastrar y soltar actividades (tarjetas y filas). */
+.is-dragging {
+  opacity: 0.4;
+}
+
+.is-drop-target {
+  background-color: rgba(99, 102, 241, 0.1); /* índigo tenue */
+  box-shadow: inset 0 0 0 2px #6366f1; /* borde índigo interior */
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}

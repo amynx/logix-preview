@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXR7QB13QD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PXR7QB13QD');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logix — Análisis de problemas</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%226%22%20fill%3D%22%236d28d9%22%2F%3E%3Cg%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%3E%3Cline%20x1%3D%226.2%22%20y1%3D%227%22%20x2%3D%2212%22%20y2%3D%2212%22%2F%3E%3Cline%20x1%3D%2212%22%20y1%3D%2212%22%20x2%3D%2217.8%22%20y2%3D%2217%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%226.2%22%20cy%3D%227%22%20r%3D%222.1%22%2F%3E%3Ccircle%20cx%3D%2217.8%22%20cy%3D%2217%22%20r%3D%222.1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+  <!-- Tipografías del rediseño: Outfit (títulos), Instrument Sans (interfaz), JetBrains Mono (datos/expresiones) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles/app.css" />
+</head>
+<body class="min-h-screen bg-[var(--lx-bg)] text-[var(--lx-ink-body)]">
+  <!-- Barra superior -->
+  <header class="sticky top-0 z-20 border-b border-[var(--lx-border-soft)] bg-[var(--lx-surface)]/90 backdrop-blur">
+    <div class="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-2.5 sm:px-7">
+      <div class="flex min-w-0 items-center gap-2.5">
+        <!-- Logo: dato → operación → resultado; el nodo central (mayor) es el paso activo -->
+        <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[8px] bg-[var(--lx-violet)]" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="h-[19px] w-[19px]" fill="none">
+            <g stroke="#ffffff" stroke-width="1.5" stroke-linecap="round">
+              <line x1="6.2" y1="7" x2="12" y2="12" />
+              <line x1="12" y1="12" x2="17.8" y2="17" />
+            </g>
+            <g fill="#ffffff">
+              <circle cx="12" cy="12" r="3" />
+              <circle cx="6.2" cy="7" r="2.1" />
+              <circle cx="17.8" cy="17" r="2.1" />
+            </g>
+          </svg>
+        </span>
+        <span class="[font-family:var(--lx-font-display)] text-[17px] font-semibold tracking-[-0.01em] text-[var(--lx-ink)]">Logix</span>
+        <span class="hidden h-4 w-px shrink-0 bg-[var(--lx-border)] sm:inline-block" aria-hidden="true"></span>
+        <!-- Título del análisis (Zen): visible siempre en la barra superior. -->
+        <span id="analysis-title-top" class="hidden min-w-0 truncate text-[13.5px] font-medium text-[var(--lx-ink-body)] sm:inline"></span>
+        <!-- Indicador de guardado: ranura estable para que su estado no altere el layout -->
+        <span id="save-status" class="ml-1"></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <!-- Deshacer / rehacer -->
+        <span id="history-controls" class="flex items-center gap-1"></span>
+        <!-- Grupo e integrantes (Zen): avatares + nombre del grupo, con panel al pulsar. -->
+        <div id="group-control" class="relative"></div>
+        <div id="toolbar" class="flex flex-wrap items-center justify-end gap-2"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Riel de etapas vertical flotante (Zen): un punto por etapa. Lo pinta stageNav. -->
+  <aside id="stage-rail" class="fixed bottom-4 left-1/2 z-20 -translate-x-1/2 md:bottom-auto md:left-7 md:top-1/2 md:translate-x-0 md:-translate-y-1/2" aria-label="Etapas del análisis"></aside>
+
+  <!-- Dock flotante (Zen): botón de ayuda «?» + su menú, y los controles de la etapa (p. ej. el zoom de la Cadena). -->
+  <div id="help-dock" class="fixed bottom-5 right-5 z-40 flex items-end gap-2"></div>
+
+  <div class="mx-auto max-w-[82.5rem] px-4 pb-16 sm:px-7">
+    <!-- Encabezado de la etapa activa (antetítulo · título · entradilla). Lo pinta stageNav. -->
+    <div id="stage-header" class="pt-[26px]"></div>
+
+    <!-- Etapa 1 · Problema: quién lo resuelve (estudiantes) y el enunciado. -->
+    <div data-stage="problema" class="py-6">
+      <section id="analysis-info"></section>
+    </div>
+
+    <!-- Etapa 2 · Datos: datos de entrada declarados. -->
+    <div data-stage="datos" class="py-6">
+      <section id="inputs-container"></section>
+    </div>
+
+    <!-- Etapa 3 · Construcción: actividades (operaciones y condiciones). -->
+    <div data-stage="construccion" class="py-6">
+      <main id="table-container" class="pb-2"></main>
+    </div>
+
+    <!-- Etapa 4 · Cadena derivada (revisión): pendientes + Entradas → Proceso → Salida. -->
+    <div data-stage="cadena" class="py-6">
+      <section id="completeness-container" class="mb-6"></section>
+      <section id="chain-container"></section>
+    </div>
+  </div>
+
+  <!-- Área de impresión para la exportación a PDF (oculta en pantalla) -->
+  <div id="print-area"></div>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

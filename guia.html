@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXR7QB13QD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PXR7QB13QD');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía de Logix — Cómo usar cada sección</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%226%22%20fill%3D%22%234f46e5%22%2F%3E%3Cg%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%3E%3Cline%20x1%3D%227%22%20y1%3D%228%22%20x2%3D%2213%22%20y2%3D%2214%22%2F%3E%3Cline%20x1%3D%2217%22%20y1%3D%227%22%20x2%3D%2213%22%20y2%3D%2214%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2214%22%20r%3D%222.6%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%228%22%20r%3D%221.8%22%2F%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%227%22%20r%3D%221.4%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles/app.css" />
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <!-- Barra superior -->
+  <header class="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+      <div class="flex min-w-0 items-center gap-2.5">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-600" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
+            <g stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.4" stroke-linecap="round">
+              <line x1="6" y1="7" x2="12" y2="13" /><line x1="17" y1="5" x2="12" y2="13" />
+              <line x1="6" y1="18" x2="12" y2="13" /><line x1="18" y1="16" x2="12" y2="13" /><line x1="17" y1="5" x2="18" y2="16" />
+            </g>
+            <g fill="#ffffff">
+              <circle cx="12" cy="13" r="2.7" /><circle cx="6" cy="7" r="1.9" /><circle cx="18" cy="16" r="1.7" />
+            </g>
+          </svg>
+        </span>
+        <span class="text-lg font-semibold text-indigo-700">Logix</span>
+        <span class="hidden text-sm text-slate-400 sm:inline">· Guía de uso</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="./index.html" class="inline-flex items-center gap-1.5 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700">← Volver a Logix</a>
+        <button id="theme-toggle" type="button" title="Cambiar tema" aria-label="Cambiar tema" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mx-auto flex max-w-6xl gap-8 px-4 py-8">
+    <!-- Navegación lateral (anclas) -->
+    <nav id="side-nav" class="sticky top-20 hidden h-max w-52 shrink-0 lg:block">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Contenido</p>
+      <ul class="space-y-0.5 text-sm"></ul>
+    </nav>
+
+    <main class="min-w-0 flex-1 space-y-12">
+
+      <!-- Navegación compacta (solo móvil) -->
+      <div class="lg:hidden">
+        <label class="sr-only" for="mobile-nav">Ir a sección</label>
+        <select id="mobile-nav" class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700">
+          <option value="">Ir a sección…</option>
+        </select>
+      </div>
+
+      <!-- INICIO -->
+      <section id="inicio" class="scroll-mt-24">
+        <h1 class="text-2xl font-bold text-slate-800">Cómo pensar el análisis</h1>
+        <p class="mt-2 max-w-2xl text-slate-600 leading-relaxed">
+          Logix te ayuda a <strong>analizar un problema antes de diseñar su algoritmo</strong>: identificas los datos,
+          descompones el proceso en pasos y ves cómo se encadena todo. No se trata de programar todavía, sino de
+          <em>entender</em> qué necesitas hacer y qué decisiones tomar.
+        </p>
+        <p class="mt-3 max-w-2xl text-slate-600 leading-relaxed">
+          El análisis avanza por secciones, en este orden. Cada una responde una pregunta:
+        </p>
+        <ol class="mt-4 grid gap-2 sm:grid-cols-2">
+          <li class="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">1</span><span><strong>Estudiantes</strong> · quiénes realizan el análisis.</span></li>
+          <li class="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">2</span><span><strong>Análisis</strong> · el título y el problema (con el enunciado opcional).</span></li>
+          <li class="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">3</span><span><strong>Datos de entrada</strong> · qué datos recibe el programa.</span></li>
+          <li class="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">4</span><span><strong>Actividades</strong> · los pasos: operaciones y condiciones.</span></li>
+          <li class="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-3 sm:col-span-2"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">5</span><span><strong>Cadena</strong> · el resumen del flujo: entra → se procesa → sale.</span></li>
+        </ol>
+        <div class="mt-4 rounded-lg border border-indigo-100 bg-indigo-50/60 p-3 text-sm text-slate-700">
+          <strong>Idea clave:</strong> el <em>dato</em> es un elemento; la <em>condición</em> es una comprobación reutilizable;
+          la <em>operación</em> transforma datos; y el <em>propósito</em> explica qué ocurrirá después con lo que produces.
+        </div>
+      </section>
+
+      <!-- ASISTENTE -->
+      <section id="asistente" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-800">¿Qué necesito hacer?</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 leading-relaxed">
+          Si no sabes qué tipo de actividad crear o qué propósito elegir, responde estas preguntas y Logix te dirá
+          exactamente qué hacer.
+        </p>
+        <div id="wizard" class="mt-4"></div>
+      </section>
+
+      <!-- ESTUDIANTES -->
+      <section id="estudiantes" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-800">1 · Estudiantes</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 leading-relaxed">
+          Registra quién realiza el análisis. El <strong>grupo</strong> es común a todos (un solo campo) y debajo agregas
+          a cada estudiante con su identificación y nombre. Es informativo: no afecta al algoritmo, pero identifica el trabajo.
+        </p>
+      </section>
+
+      <!-- ENUNCIADO -->
+      <section id="enunciado" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-800">2 · El enunciado (opcional)</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 leading-relaxed">
+          En la sección <strong>Análisis</strong> pones el título y la descripción del problema. Además, puedes activar
+          el <strong>enunciado</strong> y pegar el texto completo del ejercicio.
+        </p>
+        <details class="mt-3 rounded-lg border border-slate-200 bg-white p-3">
+          <summary class="cursor-pointer text-sm font-medium text-slate-700">¿Cuándo usar el enunciado?</summary>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Úsalo si te ayuda a <strong>identificar los datos</strong>: selecciona un fragmento del texto
+            (p. ej. «500 unidades») y conviértelo en un dato de entrada con un clic. Si prefieres declarar los datos
+            a mano, no lo actives: es totalmente opcional.
+          </p>
+        </details>
+      </section>
+
+      <!-- DATOS -->
+      <section id="datos" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-800">3 · Datos de entrada</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 leading-relaxed">
+          Son los datos que el programa <strong>recibe</strong> para trabajar. Se declaran una sola vez aquí y luego las
+          actividades solo los <em>reutilizan</em>.
+        </p>
+        <details class="mt-3 rounded-lg border border-slate-200 bg-white p-3" open>
+          <summary class="cursor-pointer text-sm font-medium text-slate-700">¿Cuándo algo es un dato de entrada?</summary>
+          <div class="mt-2 space-y-2 text-sm text-slate-600 leading-relaxed">
+            <p>Es un dato de entrada si el programa lo <strong>recibe desde fuera</strong> y no lo calcula él mismo. Por ejemplo,
+            las <em>calificaciones</em> de un estudiante o la <em>nota aprobatoria</em>.</p>
+            <p>En cambio, un dato que <strong>se obtiene al hacer una operación</strong> (como <em>promedio</em>) NO es de entrada:
+            es un <strong>dato resultante</strong>, y aparece automáticamente cuando una actividad lo produce.</p>
+          </div>
+        </details>
+        <div class="mt-3 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-lg border border-slate-200 bg-white p-3">
+            <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">Cada dato tiene un tipo</p>
+            <ul class="space-y-1 text-sm text-slate-600">
+              <li><strong>Numérico</strong> — números (4, 3.5, 500).</li>
+              <li><strong>Lógico</strong> — verdadero / falso.</li>
+              <li><strong>Texto</strong> — palabras o frases.</li>
+            </ul>
+          </div>
+          <div class="rounded-lg border border-slate-200 bg-white p-3">
+            <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">Convención de nombres</p>
+            <p class="text-sm text-slate-600 leading-relaxed">Elige una vez (camelCase, snake_case, PascalCase) y Logix la aplica a
+            todos los nombres —entradas y resultados— para que sean consistentes. Ej.: <code class="rounded bg-slate-100 px-1">promedio de notas</code> → <code class="rounded bg-slate-100 px-1">promedioDeNotas</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACTIVIDADES -->
+      <section id="actividades" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-800">4 · Actividades</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 leading-relaxed">
+          Aquí descompones el problema en pasos. Cada paso es una tarjeta, y hay <strong>dos tipos</strong> según lo que
+          estés haciendo:
+        </p>
+
+        <div class="mt-4 grid gap-3 md:grid-cols-2">
+          <div class="rounded-xl border border-slate-200 bg-white p-4">
+            <div class="mb-2 flex items-center gap-2 text-slate-700">
+              <span class="flex h-7 w-7 items-center justify-center rounded-md bg-slate-100">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+              </span>
+              <span class="font-semibold">Operación</span>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">Cuando quieres <strong>calcular o transformar</strong> datos para
+            obtener uno nuevo. Ej.: <em>calcular el promedio</em>.</p>
+          </div>
+          <div class="rounded-xl border border-indigo-200 bg-indigo-50/40 p-4">
+            <div class="mb-2 flex items-center gap-2 text-indigo-700">
+              <span class="flex h-7 w-7 items-center justify-center rounded-md bg-indigo-100">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><path d="M12 12v3"/></svg>
+              </span>
+              <span class="font-semibold">Condición</span>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">Cuando quieres <strong>comprobar algo</strong> (una pregunta de
+            sí/no). Ej.: <em>¿el promedio es ≥ 3?</em></p>
+          </div>
+        </div>
+
+        <!-- Operación -->
+        <h3 class="mt-8 text-lg font-semibold text-slate-800">La tarjeta de operación</h3>
+        <p class="mt-1 max-w-2xl text-sm text-slate-600 leading-relaxed">Pide, en orden: <strong>necesidad</strong> (qué se
+        hace) → <strong>operación</strong> (la expresión) → <strong>dato resultante</strong> y su <strong>tipo</strong> →
+        <strong>propósito</strong> → <strong>comentario</strong>. Los datos de la expresión se eligen de sus selects; los
+        valores constantes, del campo de valor.</p>
+
+        <div class="mt-3 rounded-lg border border-emerald-200 bg-emerald-50/50 p-3">
+          <p class="mb-2 text-sm font-semibold text-emerald-700">El propósito: ¿qué pasará con el dato que produces?</p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li><strong>Usar en una nueva operación</strong> — el dato alimentará otro cálculo. Ej.: <code class="rounded bg-white px-1">totalVentas</code> se usará en <code class="rounded bg-white px-1">totalVentas / días</code>. Indica en qué actividad se usará.</li>
+            <li><strong>Usar para tomar una decisión</strong> — el dato se evaluará en una condición más adelante. Ej.: <code class="rounded bg-white px-1">promedio</code> se comparará en <code class="rounded bg-white px-1">promedio ≥ 3</code>. Indica en qué actividad.</li>
+            <li><strong>Generar la información final</strong> — el dato es parte de la respuesta que se muestra. Ej.: «El promedio obtenido es 4.2».</li>
+          </ul>
+        </div>
+
+        <!-- Condición -->
+        <h3 class="mt-8 text-lg font-semibold text-slate-800">La tarjeta de condición</h3>
+        <p class="mt-1 max-w-2xl text-sm text-slate-600 leading-relaxed">Pide: <strong>pregunta</strong> en lenguaje natural →
+        <strong>expresión</strong> que la representa → <strong>nombre</strong> (para reutilizarla; si lo dejas vacío recibe
+        uno genérico como <code class="rounded bg-slate-100 px-1">C1</code>) → y una decisión importante:
+        <strong>¿evaluarla ahora?</strong></p>
+
+        <div class="mt-3 grid gap-3 md:grid-cols-2">
+          <details class="rounded-lg border border-slate-200 bg-white p-3" open>
+            <summary class="cursor-pointer text-sm font-medium text-slate-700">No la evalúo ahora (reutilizable)</summary>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Solo la <strong>descubres y la guardas</strong> para combinarla
+            después con otras (p. ej. <code class="rounded bg-indigo-50 px-1 text-indigo-700">C1 Y C2 Y C3</code>). No produce
+            un dato todavía. Úsala cuando identificas un criterio pero aún no vas a decidir con él.</p>
+          </details>
+          <details class="rounded-lg border border-slate-200 bg-white p-3" open>
+            <summary class="cursor-pointer text-sm font-medium text-slate-700">Sí la evalúo ahora</summary>
+            <div class="mt-2 space-y-2 text-sm text-slate-600 leading-relaxed">
+              <p>Evaluarla produce un <strong>dato lógico</strong> (verdadero/falso). Le pones nombre y eliges su propósito:</p>
+              <ul class="ml-4 list-disc space-y-1">
+                <li><strong>Tomar una decisión</strong> → defines los <strong>caminos</strong>: qué pasa si se cumple y si no.</li>
+                <li><strong>Nueva operación</strong> → el resultado se usará en otra operación.</li>
+                <li><strong>Información final</strong> → el resultado es la respuesta.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="mt-4 rounded-lg border border-indigo-100 bg-indigo-50/60 p-3 text-sm text-slate-700 leading-relaxed">
+          <strong>Descubrir una condición no es lo mismo que evaluarla.</strong> Puedes identificar varias condiciones
+          (C1, C2, C3), dejarlas listas, y en una actividad posterior <em>combinarlas</em> con Y / O / NO para producir la
+          decisión final (p. ej. <code class="rounded bg-white px-1">estudianteAprueba</code>).
+        </div>
+
+        <!-- Mini-ejemplos: cómo se ven las tarjetas -->
+        <h3 class="mt-8 text-lg font-semibold text-slate-800">Así se ven las tarjetas</h3>
+        <div class="mt-3 grid gap-4 md:grid-cols-2">
+          <!-- Tarjeta de operación -->
+          <div class="rounded-lg border border-slate-200 bg-white p-3.5 shadow-sm">
+            <div class="flex items-center gap-2 border-b border-slate-100 pb-2">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">2</span>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-slate-700">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+                Actividad
+              </span>
+            </div>
+            <div class="mt-2.5 space-y-2 text-sm">
+              <div class="border-l-2 border-slate-200 pl-2.5">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Necesidad</div>
+                <div class="text-slate-700">Calcular el promedio</div>
+              </div>
+              <div class="border-l-2 border-indigo-300 pl-2.5">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-indigo-600">Proceso</div>
+                <div class="mt-1 flex flex-wrap items-center gap-1">
+                  <span class="inline-flex items-center gap-1 rounded border border-violet-200 bg-violet-50 px-1.5 py-0.5 text-xs text-violet-700"><svg viewBox="0 0 24 24" class="h-3 w-3 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></svg>sumaNotas</span>
+                  <span class="rounded bg-slate-200 px-1.5 py-0.5 font-mono text-xs font-bold text-slate-700">÷</span>
+                  <span class="inline-flex items-center rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 font-mono text-xs text-amber-700">3</span>
+                </div>
+              </div>
+              <div class="border-l-2 border-emerald-300 pl-2.5">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-emerald-600">Resultado</div>
+                <div class="mt-0.5 text-slate-700"><span class="font-semibold text-slate-400">=</span> promedio</div>
+                <div class="text-xs text-slate-500">Propósito: Usar en una nueva operación</div>
+              </div>
+            </div>
+          </div>
+          <!-- Tarjeta de condición -->
+          <div class="rounded-lg border border-indigo-200 bg-indigo-50/30 p-3.5 shadow-sm">
+            <div class="flex items-center gap-2 border-b border-slate-100 pb-2">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700">3</span>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-700">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><path d="M12 12v3"/></svg>
+                Condición
+              </span>
+            </div>
+            <div class="mt-2.5 space-y-2 text-sm">
+              <div class="border-l-2 border-indigo-300 pl-2.5">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-indigo-600">Condición</div>
+                <div class="text-xs text-slate-500">Nombre</div>
+                <div class="text-slate-700">cumpleNotaAprobatoria</div>
+                <div class="mt-1 text-xs text-slate-500">Pregunta</div>
+                <div class="rounded-md border border-indigo-100 bg-indigo-50/50 px-2 py-1 text-xs italic text-slate-700">¿El promedio es mayor o igual a la nota aprobatoria?</div>
+                <div class="mt-1 text-xs text-slate-500">Comprobación</div>
+                <div class="mt-0.5 flex flex-wrap items-center gap-1">
+                  <span class="inline-flex items-center gap-1 rounded border border-violet-200 bg-violet-50 px-1.5 py-0.5 text-xs text-violet-700"><svg viewBox="0 0 24 24" class="h-3 w-3 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></svg>promedio</span>
+                  <span class="rounded bg-slate-200 px-1.5 py-0.5 font-mono text-xs font-bold text-slate-700">≥</span>
+                  <span class="inline-flex items-center gap-1 rounded border border-sky-200 bg-sky-50 px-1.5 py-0.5 text-xs text-sky-700"><svg viewBox="0 0 24 24" class="h-3 w-3 text-sky-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>notaAprobatoria</span>
+                </div>
+              </div>
+              <div class="border-l-2 border-emerald-300 pl-2.5">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-emerald-600">Evaluación</div>
+                <div class="mt-0.5 text-slate-700"><span class="font-semibold text-slate-400">=</span> aprobado <span class="ml-1 rounded bg-slate-100 px-1 text-xs text-slate-500">lógico</span></div>
+                <div class="text-xs text-slate-500">Propósito: Usar para tomar una decisión</div>
+              </div>
+              <div class="border-l-2 border-amber-300 pl-2.5">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-amber-600">Caminos</div>
+                <div class="text-xs text-slate-700">Si se cumple → <em>Aprueba</em></div>
+                <div class="text-xs text-slate-700">Si no se cumple → <em>Reprueba</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CADENA -->
+      <section id="cadena" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-800">5 · La cadena del análisis</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 leading-relaxed">
+          Es un resumen que Logix <strong>deriva automáticamente</strong> de tus actividades: <strong>Entradas → Proceso →
+          Salida</strong>. Se dibuja como un <strong>árbol</strong>: las operaciones se encadenan una tras otra y, al llegar a
+          una decisión, el flujo se <strong>divide en dos caminos</strong> (Sí / No). Cada camino termina en su respuesta
+          («Fin del análisis») o continúa en otra actividad; si vuelve a una ya mostrada, se marca con «↩ Vuelve a la Actividad N».
+          Te sirve para revisar que el razonamiento tenga sentido de principio a fin.
+        </p>
+      </section>
+
+      <!-- GLOSARIO -->
+      <section id="glosario" class="scroll-mt-24">
+        <h2 class="text-xl font-bold text-slate-800">Glosario</h2>
+        <dl class="mt-3 grid gap-2 sm:grid-cols-2">
+          <div class="rounded-lg border border-slate-200 bg-white p-3"><dt class="font-semibold text-slate-700">Dato de entrada</dt><dd class="text-sm text-slate-600">Dato que el programa recibe (no lo calcula).</dd></div>
+          <div class="rounded-lg border border-slate-200 bg-white p-3"><dt class="font-semibold text-slate-700">Dato resultante</dt><dd class="text-sm text-slate-600">Dato que produce una operación (o una condición evaluada).</dd></div>
+          <div class="rounded-lg border border-slate-200 bg-white p-3"><dt class="font-semibold text-slate-700">Operación</dt><dd class="text-sm text-slate-600">Cálculo o transformación que produce un dato nuevo.</dd></div>
+          <div class="rounded-lg border border-slate-200 bg-white p-3"><dt class="font-semibold text-slate-700">Condición</dt><dd class="text-sm text-slate-600">Comprobación de sí/no, reutilizable, que puede evaluarse.</dd></div>
+          <div class="rounded-lg border border-slate-200 bg-white p-3"><dt class="font-semibold text-slate-700">Propósito</dt><dd class="text-sm text-slate-600">Qué se hará con el dato resultante después.</dd></div>
+          <div class="rounded-lg border border-slate-200 bg-white p-3"><dt class="font-semibold text-slate-700">Camino</dt><dd class="text-sm text-slate-600">Lo que hace el algoritmo si una decisión se cumple o no.</dd></div>
+        </dl>
+      </section>
+
+      <footer class="border-t border-slate-200 pt-6 text-sm text-slate-400">
+        <a href="./index.html" class="font-medium text-indigo-600 hover:text-indigo-700">← Volver a Logix</a> · Guía de uso.
+      </footer>
+    </main>
+  </div>
+
+  <script type="module" src="./src/guia.js"></script>
+</body>
+</html>
